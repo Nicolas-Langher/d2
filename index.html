@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>d2</title>
+    <style>
+        body {
+            background-color: rgb(70, 100, 31);
+            text-align: center;
+            font-family: sans-serif;
+        }
+        h1 {
+            font-size: 60px;
+            color: aliceblue;
+        }
+        .contador {
+            background: #fff3;
+            margin: 20px auto;
+            padding: 10px;
+            width: 300px;
+            border-radius: 10px;
+        }
+        p {
+            font-size: 40px;
+            color: aliceblue;
+        }
+        button {
+            font-size: 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Contadores</h1>
+
+
+
+    
+         
+
+    <button onclick="criarContador()">Criar Novo Contador</button>
+    <div id="container-contadores"></div>
+
+    <script>
+        let idAtual = 0;
+        let valorTopo = 0;
+
+        function alterarTopo(delta) {
+            valorTopo += delta;
+            document.getElementById('valor-topo').innerText = valorTopo;
+        }
+
+        function criarContador() {
+            const container = document.getElementById('container-contadores');
+            const id = idAtual++;
+            let valor = 0;
+
+            const div = document.createElement('div');
+            div.className = 'contador';
+
+            const p = document.createElement('p');
+            p.innerText = valor;
+
+            const botaoMenos = document.createElement('button');
+            botaoMenos.innerText = '-';
+            botaoMenos.onclick = () => {
+                valor--;
+                p.innerText = valor;
+            };
+
+            const botaoMais = document.createElement('button');
+            botaoMais.innerText = '+';
+            botaoMais.onclick = () => {
+                valor++;
+                p.innerText = valor;
+            };
+
+            const botaoLimpar = document.createElement('button');
+            botaoLimpar.innerText = 'Limpar';
+            botaoLimpar.onclick = () => {
+                valor = 0;
+                p.innerText = valor;
+            };
+
+            div.appendChild(p);
+            div.appendChild(botaoMenos);
+            div.appendChild(botaoMais);
+            div.appendChild(botaoLimpar);
+
+            container.appendChild(div);
+        }
+
+        // Criar 6 contadores ao carregar a página
+        window.onload = () => {
+            for (let i = 0; i < 6; i++) {
+                criarContador();
+            }
+        };
+    </script>
+
+</body>
+</html>
